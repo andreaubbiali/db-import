@@ -35,22 +35,24 @@ func SetupDatabase() *database {
 		Logger:                                   newLogger,
 	}
 
+	conf := config.Config.Database
+
 	if db.DB, err = gorm.Open(postgres.New(postgres.Config{
-		DSN: "host=" + config.Config.DbAddr +
-			" port=" + config.Config.DbPort +
-			" dbname=" + config.Config.DbName +
-			" user=" + config.Config.DbUser +
-			" password=" + config.Config.DbPass +
-			" sslmode=" + config.Config.DbSSLmode,
+		DSN: "host=" + conf.DbAddr +
+			" port=" + conf.DbPort +
+			" dbname=" + conf.DbName +
+			" user=" + conf.DbUser +
+			" password=" + conf.DbPass +
+			" sslmode=" + conf.DbSSLmode,
 	}), &gormConfig); err != nil { // disable logger = logger.silence
 		log.Fatal("Error in db connection", err)
 	}
 
 	// SetMaxOpenConns sets the maximum number of open connections to the database.
 	sqlDB, _ := db.DB.DB()
-	sqlDB.SetMaxOpenConns(config.Config.MaxOpenConns)
+	sqlDB.SetMaxOpenConns(conf.MaxOpenConns)
 
-	log.Println("Connected to database ", config.Config.DbName)
+	log.Println("Connected to database ", conf.DbName)
 
 	return &db
 }

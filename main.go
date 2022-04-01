@@ -1,7 +1,9 @@
 package main
 
 import (
+	"aubbiali/db-import/config"
 	"aubbiali/db-import/database"
+	"aubbiali/db-import/utility"
 	"log"
 	"os"
 )
@@ -9,20 +11,16 @@ import (
 func main() {
 	log.Println("Start service")
 
+	config.ReadConfig()
+
 	db := database.SetupDatabase()
 	dd, _ := db.DB.DB()
 	defer dd.Close()
 
-	file, err := os.ReadFile("treeLst.csv")
-	check(err)
+	file, err := os.ReadFile("example.csv")
+	utility.CheckError(err)
 
 	db.Import(file)
-}
-
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
 }
 
 // func startContainer() {

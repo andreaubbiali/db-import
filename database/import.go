@@ -40,7 +40,7 @@ func (db *database) importRows(rows [][]byte, fields []string) {
 			continue
 		}
 
-		splitted := strings.Split(string(row), ",")
+		splitted := strings.Split(string(row), "|")
 
 		if len(splitted) != len(fields) {
 			log.Println(splitted)
@@ -62,9 +62,9 @@ func (db *database) importRows(rows [][]byte, fields []string) {
 // TODO attention to special char (' % ...)
 func createCreateTableQuery(fields string) (string, []string) {
 
-	splitted := strings.Split(fields, ",")
+	splitted := strings.Split(fields, "|")
 
-	query := "CREATE TABLE tableProva ("
+	query := "CREATE TABLE clanndatabase ("
 
 	for i, field := range splitted {
 		field = strings.TrimSpace(field)
@@ -80,7 +80,7 @@ func createCreateTableQuery(fields string) (string, []string) {
 
 func createInsertIntoQuery(fields []string, row []string) string {
 
-	query := "INSERT INTO tableProva ("
+	query := "INSERT INTO clanndatabase ("
 
 	for i, field := range fields {
 		field = strings.TrimSpace(field)

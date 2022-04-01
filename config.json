@@ -1,0 +1,23 @@
+{
+    "Database":{
+        "DbType":       "postgres",
+        "DbAddr":       "localhost",
+        "DbPort":       "5432",
+        "DbName":       "strd",
+        "DbUser":       "strd",
+        "DbPass":       "strd",
+        "DbSSLmode":    "disable",
+        "MaxOpenConns": 100
+    },
+    "Files":[
+        {
+            "FilePath": "example.csv",
+            "Separator": 179,
+            "Fields":{
+                "first":"string",
+                "second":"string",
+                "third": "string"
+            }
+        }
+    ]    
+}
