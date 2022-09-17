@@ -12,7 +12,7 @@
     "Files":[
         {
             "FilePath": "example.csv",
-            "Separator": 179,
+            "Separator": null,
             "Fields":{
                 "first":"string",
                 "second":"string",

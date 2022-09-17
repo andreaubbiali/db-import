@@ -23,13 +23,14 @@ func ReadConfig() {
 func validateConfig(file []byte) {
 
 	v := validator.New()
-	v.RegisterValidation("Fields", checkMap, true)
+	//v.RegisterValidation("Fields", checkMap, true)
+	utility.CheckError(json.Unmarshal(file, &Config))
 
-	utility.CheckError(v.Struct(&model.Config{}))
+	log.Println(Config)
+	utility.CheckError(v.Struct(Config))
 
 	// add custom validator for the map
 
-	utility.CheckError(json.Unmarshal(file, &Config))
 }
 
 func checkMap(f validator.FieldLevel) bool {

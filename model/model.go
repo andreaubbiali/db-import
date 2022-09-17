@@ -18,6 +18,6 @@ type dbConfig struct {
 
 type filesConfig struct {
 	FilePath  string `validate:"required,file"`
-	Separator rune   `validate:"required"`
+	Separator string `validate:"required,len=1"`
 	Fields    map[string]string
 }

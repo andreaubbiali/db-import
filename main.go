@@ -2,10 +2,7 @@ package main
 
 import (
 	"aubbiali/db-import/config"
-	"aubbiali/db-import/database"
-	"aubbiali/db-import/utility"
 	"log"
-	"os"
 )
 
 func main() {
@@ -13,14 +10,17 @@ func main() {
 
 	config.ReadConfig()
 
-	db := database.SetupDatabase()
-	dd, _ := db.DB.DB()
-	defer dd.Close()
+	log.Println("CONFIG LETTO")
+	/*
+		db := database.SetupDatabase()
+		dd, _ := db.DB.DB()
+		defer dd.Close()
 
-	file, err := os.ReadFile("example.csv")
-	utility.CheckError(err)
+		file, err := os.ReadFile("example.csv")
+		utility.CheckError(err)
 
-	db.Import(file)
+		db.Import(file)
+	*/
 }
 
 // func startContainer() {
